@@ -14,7 +14,7 @@ function shell_helper {
     for sh_cmd in "${sh_commands[@]}"
     do
         printf "%${width_of_sh_command}s    %s\n" "$sh_cmd" "${sh_commands_desc[$i]}"
-        i+=1
+        ((i+=1))
     done
 }
 
