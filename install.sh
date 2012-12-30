@@ -1,4 +1,4 @@
-echo Installing Shell Helper
+echo 'Installing Shell Helper'
 
 # copy shell_helper.sh into user's home directory
 cp shell_helper.sh ~/.shell_helper
@@ -7,4 +7,4 @@ cp shell_helper.sh ~/.shell_helper
 echo '' >> ~/.bash_profile
 echo 'source .shell_helper' >> ~/.bash_profile
 
-echo Shell Helper Installed
+echo 'Shell Helper Installed'
