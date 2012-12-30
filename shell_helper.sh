@@ -1,3 +1,12 @@
+##
+# Shell Helper
+# List most of my useful and custome shell commands for improving coding productivity.
+# If anyone who is interested in this, just clone it and have a look.
+# 
+# Author: bom_d_van
+# Gmail: bom.d.van@gmail.com
+# On: 2012-12-30
+# 
 declare -a sh_commands=()
 declare -a sh_commands_desc=()
 declare -i width_of_sh_command=0
@@ -55,6 +64,7 @@ function change_extension {
 }
 
 # TODO realize this function about rename files at the same time
+shell_helper_desc 'xrename [origin] [new_name]' 'Rename your file'
 function xrename {
     for file in $(find . -type f -name "*.$1")
     do
@@ -66,14 +76,12 @@ function xrename {
     done
 }
 
+shell_helper_desc 'mate_curl' 'Open execution result of curl in Textmate'
 function mate_curl {
     curl $1 | mate
 }
 
-function killwsd {
-    kill $(cat ~/Code/Van/Wando3/tmp/pids/server.pid)
-}
-
+shell_helper_desc 'tree_with_lines' 'List count of lines of all the files inside this folder'
 function tree_with_lines {
     for file_path in `find . -type f -o -name '.git' -prune -type f`
     do
@@ -81,6 +89,7 @@ function tree_with_lines {
     done
 }
 
+shell_helper_desc 'lines_tree' 'lines statistical tool based on tree_with_lines'
 function lines_tree {
     tree_with_lines | awk '
         {if (NR==1) {
@@ -104,6 +113,7 @@ function lines_tree {
 }
 
 # To Refactor
+shell_helper_desc 'xwando' 'shortcut for runing wando3 project'
 function xwando {
     xproj wando
     rvm default
@@ -112,11 +122,8 @@ function xwando {
 }
 
 alias tag='dir_tagger'
-function xproj {
-    xmate $*
-    xto $*
-}
 
+shell_helper_desc 'xmate [dir_tagger arguments]' 'Open project in Textmate(Based on dir_tagger)'
 function xmate {
     proj=$(dir_tagger $*)
     proj_name=$(dir_tagger -t $1)
@@ -130,6 +137,7 @@ function xmate {
     fi
 }
 
+shell_helper_desc 'xto [dir_tagger arguments]' 'cd to the path of dir_tagger result'
 function xto {
     xto_path=$(dir_tagger $*)
     if [[ "$xto_path" != "" ]]; then
@@ -139,6 +147,13 @@ function xto {
     fi
 }
 
+shell_helper_desc 'xproj [dir_tagger arguments]' 'xmate and xto combination'
+function xproj {
+    xmate $*
+    xto $*
+}
+
+shell_helper_desc 'up [level]' 'cd back to path by a argument indicating level'
 function up {
     number=0
     up_path=''
@@ -150,10 +165,12 @@ function up {
     cd $up_path
 }
 
+shell_helper_desc 'newtitle [new title]' 'change the terminator title'
 function new_title {
     echo -n -e "\033]0;$1\007"
 }
 
+shell_helper_desc 'pentaho' 'run the pentaho project'
 function pentaho {
     if [[ $1 == 'start' ]]; then
         open /Applications/pentaho/start.command
@@ -165,6 +182,7 @@ function pentaho {
 }
 
 # Redmine Backup
+shell_helper_desc 'backup_redmine' 'backup all the redmine file and database'
 function backup_redmine {
     backup_path=/Volumes/server/Redmine_Backup/redmine_for_wando_backup/`date +%y_%m_%d`
     mkdir $backup_path
